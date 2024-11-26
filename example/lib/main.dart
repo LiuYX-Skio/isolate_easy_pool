@@ -17,7 +17,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  final isolatePool = ThreadPool.getInstance();
 
   @override
   void initState() {
@@ -26,14 +25,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   void initSDK(){
-    ThreadPool.getInstance().init();
+    IsolatePool.getInstance().init();
   }
 
   void startExecuteIsolatePoolTask() async {
-    await isolatePool.init();
     // 运行一个简单的异步任务
     for(int i = 0; i<10; i++){
-      isolatePool.runTask(() async {
+      IsolatePool.getInstance().runTask(() async {
         await Future.delayed(const Duration(seconds: 10)); // 模拟异步任务
         print("test = runTask==== ${i}");
         // return "Task completed!";
@@ -42,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void destroyIsolatePool() async {
-    isolatePool.dispose();
+    IsolatePool.getInstance().dispose();
   }
 
   @override

@@ -19,16 +19,24 @@ of the system. The use of plugins is very simple, and after integration, only a
 few simple configuration steps are needed to quickly achieve task parallel processing.
 
 ## Usage
+Update your pubspec.yaml file and add IsolatePool dependency
+```
+dependencies:
+  isolate_pool: ^1.0.1
 
+dev_dependencies:
+  isolate_pool: ^1.0.1
+
+```
 Initialize SDK, it is recommended to initialize it at the earliest possible time
 ```
-  ThreadPool.getInstance().init();
+  IsolatePool.getInstance().init();
 ```
 By calling the runTask method in ThreadPool, asynchronous tasks can be executed
 with just one line of code
 ```
   void startExecuteIsolatePoolTask() async {
-      ThreadPool.getInstance().runTask(() async {
+      IsolatePool.getInstance().runTask(() async {
         await Future.delayed(const Duration(seconds: 10)); // 模拟异步任务
         print("test = runTask==== ${i}");
         // return "Task completed!";
@@ -37,5 +45,5 @@ with just one line of code
 ```
 Call this method to destroy when confirming that thread pool is no longer needed
 ```
-ThreadPool.getInstance().dispose();
+IsolatePool.getInstance().dispose();
 ```

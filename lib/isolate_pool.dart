@@ -9,7 +9,7 @@ import 'package:synchronized/synchronized.dart';
 import 'isolate_queue.dart';
 
 
-class ThreadPool {
+class IsolatePool {
   int _coreThreadSum = 4;
   final List<SendPort> _sendCorePorts = [];
   final Queue<IsolateQueue> _waitQueue = Queue<IsolateQueue>(); // 等待任务队列
@@ -17,12 +17,12 @@ class ThreadPool {
   final lock = Lock();
   static const String TAG = "ThreadPool";
 
-  ThreadPool._();
+  IsolatePool._();
 
-  static ThreadPool? _instance;
+  static IsolatePool? _instance;
 
-  static ThreadPool getInstance(){
-    _instance ??=  ThreadPool._();
+  static IsolatePool getInstance(){
+    _instance ??=  IsolatePool._();
     return _instance!;
   }
 
