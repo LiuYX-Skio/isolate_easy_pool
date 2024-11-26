@@ -6,7 +6,7 @@ class IsolateTask {
       void Function(dynamic) callback) {
     final port = ReceivePort();
     // 向Isolate发送任务
-    sendPort.send(task);
+    sendPort.send(<dynamic>[task, port.sendPort]);
     // 监听任务完成的通知
     port.listen((message) {
       callback(message);
