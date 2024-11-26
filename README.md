@@ -1,6 +1,6 @@
 # ThreadPool
 
-  Dart is a single threaded language that supports asynchronous programming, but
+&ensp;Dart is a single threaded language that supports asynchronous programming, but
 if time-consuming operations are executed in the main thread, it will inevitably
 affect system performance. Dart's main thread is suitable for handling shorter 
 asynchronous tasks, while for long-running tasks, executing directly in the main
@@ -8,8 +8,8 @@ thread may lead to blocking and performance bottlenecks. However, Dart itself al
 supports multi-threaded programming, and Isolation, as a thread like concept, 
 provides the ability for multitasking parallelism. However, its use is relatively
 complex, and the process of creating and destroying Isolation is cumbersome, which
-may burden performance.
-  To address this issue, this plugin encapsulates an efficient thread pool based on 
+may burden performance.<br/>
+&ensp;To address this issue, this plugin encapsulates an efficient thread pool based on 
 Isolate, which includes configurable core thread counts and task waiting queues. 
 After entering the pool, tasks will first attempt to retrieve and execute from 
 idle threads. If all core threads are busy, new tasks will be added to the waiting 
