@@ -1,4 +1,4 @@
-# ThreadPool
+# IsolatePool
 
 &ensp;&ensp;Dart is a single threaded language that supports asynchronous programming, but
 if time-consuming operations are executed in the main thread, it will inevitably

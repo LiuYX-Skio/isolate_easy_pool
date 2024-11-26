@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
     IsolatePool.getInstance().init();
   }
 
-  void startExecuteIsolatePoolTask() async {
+  void startExecuteIsolatePoolTask() {
     // 运行一个简单的异步任务
     for(int i = 0; i<10; i++){
       IsolatePool.getInstance().runTask(() async {

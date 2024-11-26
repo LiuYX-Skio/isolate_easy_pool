@@ -15,4 +15,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  synchronized: ^3.3.0+3

@@ -1,3 +1,3 @@
 ## 1.0.1
 
-* TODO: Describe initial release.
+* TODO: Support multi isolate reuse.
