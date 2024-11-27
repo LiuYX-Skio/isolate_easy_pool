@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:isolate';
 
-import 'package:flutter/foundation.dart';
 import 'package:isolate_easy_pool/isolate_task.dart';
 import 'package:synchronized/synchronized.dart';
 
@@ -15,7 +14,8 @@ class IsolatePool {
   final IsolateTask iTask = IsolateTask();
   final lock = Lock();
   static const String TAG = "ThreadPool";
-  bool isInit = false;
+  bool _isInit = false;
+  bool _isOpenLog = false;
 
   IsolatePool._();
 
@@ -26,15 +26,16 @@ class IsolatePool {
     return _instance!;
   }
 
-  Future<void> init([int coreThreadSum = 4]) async {
+  Future<void> init([int coreThreadSum = 4,bool isOpenLog = false]) async {
     // 启动线程池中的工作线程
+    _isOpenLog = isOpenLog;
     _coreThreadSum = coreThreadSum;
     _sendCorePorts.clear();
     for (int i = 0; i < _coreThreadSum; i++) {
       final sendPort = await iTask.spawnIsolate();
       _sendCorePorts.add(sendPort);
     }
-    isInit = true;
+    _isInit = true;
   }
 
   /// 销毁线程池
@@ -48,7 +49,7 @@ class IsolatePool {
 
   /// 寻找空闲线程执行任务，没有空闲线程将任务放入等待队列
   Future<T> runTask<T>(Future<T> Function() task) async {
-    if (!isInit) {
+    if (!_isInit) {
       await init();
     }
     // 获取空闲线程的 SendPort
@@ -67,7 +68,7 @@ class IsolatePool {
   }
 
   void printf(String msg) {
-    if (kDebugMode) {
+    if(_isOpenLog){
       print("$TAG $msg");
     }
   }

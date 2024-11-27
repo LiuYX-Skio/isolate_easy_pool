@@ -2,3 +2,5 @@
 ### Added
 - Migrated to Null Safety.
 - Support multi isolate reuse
+## [0.0.6]
+- Remove Flutter SDK dependencies
