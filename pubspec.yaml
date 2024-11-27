@@ -1,10 +1,10 @@
-name: isolate_pool
+name: isolate_easy_pool
 description: "An extremely user-friendly thread pool plugin."
-version: 1.0.1
-homepage: "https://github.com/LiuYX-Skio/isolate_pool"
+version: 0.0.5
+homepage: "https://github.com/LiuYX-Skio/isolate_easy_pool"
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=2.12.0 <4.0.0"
   flutter: '>=3.3.0'
 
 dependencies:

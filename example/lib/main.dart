@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:isolate_pool/isolate_pool.dart';
+import 'package:isolate_easy_pool/isolate_easy_pool.dart';
 
 void main() {
   runApp(const MyApp());

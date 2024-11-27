@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'dart:isolate';
 
 import 'package:flutter/foundation.dart';
-import 'package:isolate_pool/isolate_task.dart';
+import 'package:isolate_easy_pool/isolate_task.dart';
 import 'package:synchronized/synchronized.dart';
 
 import 'isolate_queue.dart';

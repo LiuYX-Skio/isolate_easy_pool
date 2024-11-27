@@ -1,6 +1,6 @@
-# isolate_pool_example
+# isolate_easy_pool_example
 
-Demonstrates how to use the isolate_pool plugin.
+Demonstrates how to use the isolate_easy_pool plugin.
 
 ## Getting Started
 

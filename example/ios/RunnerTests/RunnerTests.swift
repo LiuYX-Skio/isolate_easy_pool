@@ -3,7 +3,7 @@ import UIKit
 import XCTest
 
 
-@testable import isolate_pool
+@testable import isolate_easy_pool
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //
@@ -12,7 +12,7 @@ import XCTest
 class RunnerTests: XCTestCase {
 
   func testGetPlatformVersion() {
-    let plugin = IsolatePoolPlugin()
+    let plugin = IsolateEasyPoolPlugin()
 
     let call = FlutterMethodCall(methodName: "getPlatformVersion", arguments: [])
 
