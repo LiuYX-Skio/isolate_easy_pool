@@ -32,7 +32,7 @@ Initialize SDK, it is recommended to initialize it at the earliest possible time
 By calling the runTask method in ThreadPool, asynchronous tasks can be executed
 with just one line of code
 ```
-  void startExecuteIsolatePoolTask() async {
+  void startExecuteIsolatePoolTask() {
       IsolatePool.getInstance().runTask(() async {
         await Future.delayed(const Duration(seconds: 10)); // 模拟异步任务
         print("test = runTask==== ${i}");
