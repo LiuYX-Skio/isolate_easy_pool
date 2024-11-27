@@ -4,3 +4,5 @@
 - Support multi isolate reuse
 ## [0.0.6]
 - Remove Flutter SDK dependencies
+## [0.0.7]
+- Optimize isolate pool destruction logic

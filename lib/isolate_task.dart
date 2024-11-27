@@ -1,12 +1,19 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:isolate_easy_pool/isolate_easy_pool.dart';
+
+import 'isolate_message.dart';
+
 class IsolateTask {
-  void sendTask(Future Function() task, SendPort sendPort,
+
+  void sendTask(Future Function() task, IsolateMessage isolate,
       void Function(dynamic) callback) {
     final port = ReceivePort();
+    isolate.receivePort = port;
     // 向Isolate发送任务
-    sendPort.send(<dynamic>[task, port.sendPort]);
+    isolate.sendPort.send(<dynamic>[task, port.sendPort]);
+    isolate.msgBackPort = port;
     // 监听任务完成的通知
     port.listen((message) {
       callback(message);
@@ -14,21 +21,22 @@ class IsolateTask {
   }
 
   /// 创建Isolate
-  Future<SendPort> spawnIsolate() async {
+  Future<IsolateMessage> spawnIsolate() async {
     final receivePort = ReceivePort();
-    await Isolate.spawn(_worker, receivePort.sendPort);
+    Isolate isolate = await Isolate.spawn(_worker, receivePort.sendPort);
     // 获取工作线程的 SendPort
     final sendPort = await receivePort.first;
-    return sendPort;
+    return IsolateMessage(
+        sendPort: sendPort, receivePort: receivePort, isolate: isolate);
   }
 
   /// 创建工作线程 (Isolate)
-  static Future<void> _worker(SendPort sendPort) async {
+  Future<void> _worker(SendPort sendPort) async {
     final receivePort = ReceivePort();
     sendPort.send(receivePort.sendPort);
+    //isolate循环接收消息
     await for (var message in receivePort) {
       if (message == null) {
-        // 如果接收到 null，表示结束工作线程
         break;
       }
       final task = message[0] as Future Function();
@@ -37,7 +45,11 @@ class IsolateTask {
       final result = await task();
       //完成后回调给当前调用isloate
       replyPort.send(result);
+      if (result is String && result == IsolatePool.ISOLATE_DISPOSE) {
+        break;
+      }
     }
     receivePort.close();
   }
+
 }
