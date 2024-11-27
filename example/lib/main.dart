@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
       return "Task completed!";
     });
     //dart主线程
-    print("received====The $i task has been completed=${Isolate.current.debugName}=data=$data,${DateTime.now()}");
+    print("received====The $i task has been completed=${Isolate.current.debugName}=data=$data");
     setState(() {
       message = data;
     });

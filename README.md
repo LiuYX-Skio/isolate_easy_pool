@@ -32,12 +32,16 @@ Initialize SDK, it is recommended to initialize it at the earliest possible time
 By calling the runTask method in ThreadPool, asynchronous tasks can be executed
 with just one line of code
 ```
-  void startExecuteIsolatePoolTask() {
-      IsolatePool.getInstance().runTask(() async {
-        await Future.delayed(const Duration(seconds: 10)); // 模拟异步任务
-        print("test = runTask==== ${i}");
-        // return "Task completed!";
-      });
+  void startExecuteIsolatePoolTask(int i) async {
+    // 运行一个简单的异步任务
+    String data = await IsolatePool.getInstance().runTask(() async {
+      //子线程任务
+      await Future.delayed(const Duration(seconds: 10)); // 模拟异步任务
+      //将信息返回给主线程
+      return "Task completed!";
+    });
+    //dart主线程
+    print("received====The $i task has been completed=${Isolate.current.debugName}");
   }
 ```
 Call this method to destroy when confirming that thread pool is no longer needed
