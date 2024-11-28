@@ -28,9 +28,8 @@ class _MyAppState extends State<MyApp> {
   void initSDK() {
     //第一个参数是线程池线程数,建议根据实际情况选择合适的Isolate数量（如CPU核心数，异步类型（CPU密集型、IO））等，默认4个Isolate
     //第二个参数是否开启debug日志，默认不开启，建议debug模式开始，release模式关闭
-    IsolatePool.getInstance().init(4,true);
+    IsolatePool.getInstance().init(4, true);
   }
-
 
   void startExecuteIsolatePoolTask(int i) async {
     // 运行一个简单的异步任务
@@ -41,7 +40,8 @@ class _MyAppState extends State<MyApp> {
       return "Task completed!";
     });
     //dart主线程
-    print("received====The $i task has been completed=${Isolate.current.debugName}=data=$data");
+    print(
+        "received====The $i task has been completed=${Isolate.current.debugName}=data=$data");
     setState(() {
       message = data;
     });
