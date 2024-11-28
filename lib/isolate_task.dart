@@ -5,8 +5,9 @@ import 'package:isolate_easy_pool/isolate_easy_pool.dart';
 
 import 'isolate_message.dart';
 
+///Isolate任务执行类
 class IsolateTask {
-
+  ///发送任务给子isolate
   void sendTask(Future Function() task, IsolateMessage isolate,
       void Function(dynamic) callback) {
     final port = ReceivePort();
@@ -51,5 +52,4 @@ class IsolateTask {
     }
     receivePort.close();
   }
-
 }

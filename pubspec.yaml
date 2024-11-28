@@ -1,6 +1,6 @@
 name: isolate_easy_pool
-description: "An extremely user-friendly thread pool plugin."
-version: 0.0.7
+description: "An extremely user-friendly isolate pool plugin.Easy implementation of Isolate reuse and asynchronous task execution in one line of code.Automatically switching back to the main isolate function greatly improves development efficiency."
+version: 0.0.8
 homepage: "https://github.com/LiuYX-Skio/isolate_easy_pool"
 
 environment:

@@ -29,6 +29,7 @@ class IsolatePool {
     return _instance!;
   }
 
+  ///isolate pool初始化,coreThreadSum 运行isolate数量,isOpenLog 是否打开日志
   Future<void> init([int coreThreadSum = 4, bool isOpenLog = false]) async {
     // 启动线程池中的工作线程
     if (!_isInit) {
@@ -42,7 +43,6 @@ class IsolatePool {
       _isInit = true;
     }
   }
-
 
   /// 寻找空闲线程执行任务，没有空闲线程将任务放入等待队列
   Future<T> runTask<T>(Future<T> Function() task) async {
@@ -70,6 +70,7 @@ class IsolatePool {
     }
   }
 
+  ///日志打印
   void _printf(String msg) {
     if (_isOpenLog) {
       print("$TAG $msg");
@@ -128,6 +129,7 @@ class IsolatePool {
     }
   }
 
+  ///销毁isolate pool
   void _destroy() {
     if (!_isDestroy) {
       print("destroy=${_isolates.length}");

@@ -22,7 +22,7 @@ few simple configuration steps are needed to quickly achieve task parallel proce
 Update your pubspec.yaml file and add IsolatePool dependency
 ```
 dependencies:
-  isolate_easy_pool: ^0.0.7
+  isolate_easy_pool: ^0.0.8
 
 ```
 Initialize SDK, it is recommended to initialize it at the earliest possible time
